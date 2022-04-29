@@ -1,0 +1,20 @@
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: ipvlan-test-conf
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": "ens4",
+      "ipam": {
+        "type": "host-local",
+        "subnet": "172.16.0.0/16",
+        "rangeStart": "172.16.1.101",
+        "rangeEnd": "172.16.1.102",
+        "routes": [
+          { "dst": "0.0.0.0/0" }
+        ],
+        "gateway": "172.16.30.254"
+      }
+    }'
