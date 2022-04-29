@@ -18,3 +18,24 @@ spec:
         "gateway": "172.16.30.254"
       }
     }'
+
+
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: ipvlan-consul-conf
+spec:
+  config: '{
+      "cniVersion": "0.3.0",
+      "type": "ipvlan",
+      "master": "ens4",
+      "ipam": {
+        "type": "static",
+        "addresses": [ { "address": "172.16.1.101/16" } ],
+        "routes": [
+          { "dst": "0.0.0.0/0" }
+        ],
+        "gateway": "172.16.30.254"
+      }
+    }'
+    
